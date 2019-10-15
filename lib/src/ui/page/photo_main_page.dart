@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:photo/src/delegate/badge_delegate.dart';
 import 'package:photo/src/delegate/loading_delegate.dart';
 import 'package:photo/src/engine/lru_cache.dart';
@@ -17,6 +19,7 @@ import 'package:photo/src/ui/page/photo_preview_page.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 part './main/bottom_widget.dart';
+
 part './main/image_item.dart';
 
 class PhotoMainPage extends StatefulWidget {
@@ -110,29 +113,23 @@ class _PhotoMainPageState extends State<PhotoMainPage>
         style: textStyle,
         child: Scaffold(
           appBar: AppBar(
-            leading: IconButton(
-              icon: Icon(
-                Icons.close,
-                color: options.textColor,
-              ),
-              onPressed: _cancel,
-            ),
+            automaticallyImplyLeading: false,
             title: Text(
               i18nProvider.getTitleText(options),
               style: TextStyle(
-                color: options.textColor,
-              ),
+                  color: options.textColor, fontWeight: FontWeight.normal),
             ),
             actions: <Widget>[
-              FlatButton(
-                splashColor: Colors.transparent,
+              CupertinoButton(
                 child: Text(
-                  i18nProvider.getSureText(options, selectedCount),
-                  style: selectedCount == 0
-                      ? textStyle.copyWith(color: options.disableColor)
-                      : textStyle,
+                  '取消',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.normal,
+                    color: options.textColor,
+                  ),
                 ),
-                onPressed: selectedCount == 0 ? null : sure,
+                onPressed: _cancel,
               ),
             ],
           ),
@@ -144,6 +141,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
             galleryName: currentGalleryName,
             onGalleryChange: _onGalleryChange,
             onTapPreview: selectedList.isEmpty ? null : _onTapPreview,
+            onTapCommit: sure,
             selectedProvider: this,
             galleryListProvider: this,
           ),
@@ -182,7 +180,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
           ),
         ),
         duration: Duration(milliseconds: 1500),
-        backgroundColor: themeColor.withOpacity(0.7),
+        backgroundColor: options.themeColor.withOpacity(0.7),
       ),
     );
   }
