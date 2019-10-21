@@ -38,8 +38,7 @@ class __BottomWidgetState extends State<_BottomWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var textStyle = TextStyle(fontSize: 14.0);
-    const textPadding = const EdgeInsets.symmetric(horizontal: 16.0);
+    var textStyle = TextStyle(fontSize: 16.0);
     return Container(
       color: options.themeColor,
       child: SafeArea(
@@ -50,19 +49,19 @@ class __BottomWidgetState extends State<_BottomWidget> {
           child: Row(
             children: <Widget>[
               FlatButton(
+                padding: EdgeInsets.all(0),
                 onPressed: widget.onTapPreview,
                 textColor: options.textColor,
                 splashColor: Colors.transparent,
                 disabledTextColor: options.disableColor,
                 child: Container(
-                  height: 44.0,
+                  height: 38.0,
                   alignment: Alignment.center,
                   child: Text(
                     i18nProvider.getPreviewText(
                         options, widget.selectedProvider),
                     style: textStyle,
                   ),
-                  padding: textPadding,
                 ),
               ),
 //              Expanded(
@@ -85,20 +84,25 @@ class __BottomWidgetState extends State<_BottomWidget> {
                 onPressed: widget.selectedProvider.selectedCount <= 0
                     ? null
                     : widget.onTapCommit,
+                disabledColor: Color(0xFFC8C8C8),
+                disabledTextColor: options.textColor,
+                padding: EdgeInsets.all(0),
                 textColor: options.textColor,
                 splashColor: Colors.transparent,
-                disabledTextColor: options.disableColor,
+                color: options.splashColor,
                 child: Container(
-                  height: 44.0,
+                  height: 38.0,
+
+
                   alignment: Alignment.center,
                   child: Text(
                     i18nProvider.getSureText(
                         options, widget.selectedProvider.selectedCount),
                     style: textStyle,
                   ),
-                  padding: textPadding,
                 ),
               ),
+              SizedBox(width: 15,)
             ],
           ),
         ),

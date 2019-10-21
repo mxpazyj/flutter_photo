@@ -144,21 +144,6 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
               );
             },
           ),
-          actions: <Widget>[
-            StreamBuilder(
-              stream: pageStream,
-              builder: (ctx, s) => FlatButton(
-                splashColor: Colors.transparent,
-                onPressed: selectedList.length == 0 ? null : sure,
-                child: Text(
-                  config.provider.getSureText(options, selectedList.length),
-                  style: selectedList.length == 0
-                      ? textStyle.copyWith(color: options.disableColor)
-                      : textStyle,
-                ),
-              ),
-            ),
-          ],
         ),
         body: PageView.builder(
           controller: pageController,
@@ -180,10 +165,33 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
           height: 52.0,
           child: Row(
             children: <Widget>[
+              _buildCheckbox(),
               Expanded(
                 child: Container(),
               ),
-              _buildCheckbox(),
+              StreamBuilder(
+                stream: pageStream,
+                builder: (ctx, s) =>               FlatButton(
+                  onPressed: selectedList.length == 0 ? null : sure,
+                  disabledColor: Color(0xFFC8C8C8),
+                  disabledTextColor: options.textColor,
+                  padding: EdgeInsets.all(0),
+                  textColor: options.textColor,
+                  splashColor: Colors.transparent,
+                  color: options.splashColor,
+                  child: Container(
+                    height: 38.0,
+                    alignment: Alignment.center,
+                    child: Text(
+                      config.provider.getSureText(
+                          options, selectedList.length),
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 15,),
+
             ],
           ),
         ),

@@ -115,13 +115,16 @@ class _MyHomePageState extends State<MyHomePage> with LoadingDelegate {
       context: context,
 
       /// The following are optional parameters.
-      themeColor: Colors.blue,
+      themeColor: Colors.black,
       // the title color and bottom color
       textColor: Colors.white,
       // the check box disable color
-      itemRadio: 0.88,
+      itemRadio: 1,
       // the content item radio
       maxSelected: 2,
+      disableColor: Color(0xFFFFFFFF).withOpacity(0.5),
+      splashColor: Color(0xFF0080FF),
+      padding: 0,
       // max picker image count
       // provider: I18nProvider.english,
       provider: I18nProvider.chinese,
@@ -132,8 +135,10 @@ class _MyHomePageState extends State<MyHomePage> with LoadingDelegate {
       thumbSize: 150,
       // default is DefaultCheckBoxBuilderDelegate ,or you make custom delegate to create checkbox
 
-
       pickType: type,
+      checkBoxBuilderDelegate: IconBoxBuilderDelegate(
+          active: Icon(Icons.check_circle, color: Colors.blue,),
+          unselected: Icon(Icons.check_circle_outline,color: Colors.white,)),
 
       photoPathList: pathList,
     );

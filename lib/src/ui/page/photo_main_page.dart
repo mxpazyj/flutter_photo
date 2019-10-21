@@ -43,6 +43,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
   Options get options => widget.options;
 
   I18nProvider get i18nProvider => PhotoPickerProvider.of(context).provider;
+
   AssetProvider get assetProvider =>
       PhotoPickerProvider.of(context).assetProvider;
 
@@ -116,8 +117,14 @@ class _PhotoMainPageState extends State<PhotoMainPage>
             automaticallyImplyLeading: false,
             title: Text(
               i18nProvider.getTitleText(options),
-              style: TextStyle(
-                  color: options.textColor, fontWeight: FontWeight.normal),
+              style: TextStyle(color: options.textColor, fontSize: 20),
+            ),
+            leading: CupertinoButton(
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: options.textColor,
+              ),
+              onPressed: _cancel,
             ),
             actions: <Widget>[
               CupertinoButton(
@@ -125,7 +132,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
                   '取消',
                   style: TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.bold,
                     color: options.textColor,
                   ),
                 ),
@@ -293,7 +300,6 @@ class _PhotoMainPageState extends State<PhotoMainPage>
               loadingDelegate: options.loadingDelegate,
               badgeDelegate: options.badgeDelegate,
             ),
-            _buildMask(containsEntity(data)),
             _buildSelected(data),
           ],
         ),
@@ -319,8 +325,8 @@ class _PhotoMainPageState extends State<PhotoMainPage>
     var currentSelected = containsEntity(entity);
     return Positioned(
       right: 0.0,
-      width: 36.0,
-      height: 36.0,
+      width: 28.0,
+      height: 28.0,
       child: GestureDetector(
         onTap: () {
           changeCheck(!currentSelected, entity);
@@ -340,21 +346,25 @@ class _PhotoMainPageState extends State<PhotoMainPage>
         (indexOfSelected(entity) + 1).toString(),
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: 12.0,
+          fontSize: 13.0,
           color: options.textColor,
         ),
       );
-      decoration = BoxDecoration(color: themeColor);
+      decoration = BoxDecoration(
+        color: Color(0xFF0080FF),
+        borderRadius: BorderRadius.circular(100),
+      );
     } else {
       decoration = BoxDecoration(
-        borderRadius: BorderRadius.circular(1.0),
+        borderRadius: BorderRadius.circular(100),
+        color: Color(0x80999999),
         border: Border.all(
-          color: themeColor,
+          color: Color(0xFFEEEEEE),
         ),
       );
     }
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(5.0),
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),
         decoration: decoration,

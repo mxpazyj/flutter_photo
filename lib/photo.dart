@@ -78,6 +78,7 @@ class PhotoPicker {
     PickType pickType = PickType.all,
     BadgeDelegate badgeDelegate = const DefaultBadgeDelegate(),
     List<AssetPathEntity> photoPathList,
+    Color splashColor,
   }) {
     assert(provider != null, "provider must be not null");
     assert(context != null, "context must be not null");
@@ -100,6 +101,7 @@ class PhotoPicker {
       itemRadio: itemRadio,
       padding: padding,
       disableColor: disableColor,
+      splashColor: splashColor,
       textColor: textColor,
       themeColor: themeColor,
       thumbSize: thumbSize,
@@ -129,8 +131,8 @@ class PhotoPicker {
       var result = await showDialog(
         context: context,
         builder: (ctx) => NotPermissionDialog(
-              provider.getNotPermissionText(options),
-            ),
+          provider.getNotPermissionText(options),
+        ),
       );
       if (result == true) {
         PhotoManager.openSetting();
@@ -150,10 +152,10 @@ class PhotoPicker {
     return Navigator.of(context).push(
       MaterialPageRoute(
         builder: (ctx) => PhotoApp(
-              options: options,
-              provider: provider,
-              photoList: photoList,
-            ),
+          options: options,
+          provider: provider,
+          photoList: photoList,
+        ),
       ),
     );
   }

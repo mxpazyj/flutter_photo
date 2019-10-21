@@ -21,6 +21,8 @@ class Options {
 
   final Color disableColor;
 
+  final Color splashColor;
+
   final int thumbSize;
 
   final SortDelegate sortDelegate;
@@ -48,6 +50,7 @@ class Options {
     this.loadingDelegate,
     this.badgeDelegate,
     this.pickType,
+    this.splashColor,
   });
 }
 

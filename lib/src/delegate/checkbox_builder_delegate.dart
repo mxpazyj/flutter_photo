@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' hide CheckboxListTile;
+import 'package:flutter/material.dart' as prefix0;
 import 'package:photo/src/entity/options.dart';
 import 'package:photo/src/provider/i18n_provider.dart';
 import 'package:photo/src/ui/widget/check_tile_copy.dart';
@@ -80,6 +81,38 @@ class RadioCheckBoxBuilderDelegate extends CheckBoxBuilderDelegate {
         groupValue: checked,
         controlAffinity: ListTileControlAffinity.trailing,
       ),
+    );
+  }
+}
+
+class IconBoxBuilderDelegate extends CheckBoxBuilderDelegate {
+  Widget active;
+  Widget unselected;
+
+  IconBoxBuilderDelegate({this.active, this.unselected});
+
+  @override
+  Widget buildCheckBox(
+    BuildContext context,
+    bool checked,
+    int index,
+    Options options,
+    I18nProvider i18nProvider,
+  ) {
+    return Row(
+      children: <Widget>[
+        SizedBox(
+          width: 15,
+        ),
+        Text(
+          i18nProvider.getSelectedOptionsText(options),
+          style: TextStyle(color: options.textColor, fontSize: 16.0, fontWeight: FontWeight.w400),
+        ),
+        AnimatedSwitcher(
+          duration: Duration(milliseconds: 400),
+          child: checked ? active : unselected,
+        ),
+      ],
     );
   }
 }
