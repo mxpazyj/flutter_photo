@@ -44,6 +44,7 @@ class PhotoPreviewPage extends StatefulWidget {
 
 class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
   PhotoPickerProvider get config => PhotoPickerProvider.of(context);
+
   AssetProvider get assetProvider => widget.assetProvider;
 
   Options get options => config.options;
@@ -171,7 +172,7 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
               ),
               StreamBuilder(
                 stream: pageStream,
-                builder: (ctx, s) =>               FlatButton(
+                builder: (ctx, s) => FlatButton(
                   onPressed: selectedList.length == 0 ? null : sure,
                   disabledColor: Color(0xFFC8C8C8),
                   disabledTextColor: options.textColor,
@@ -183,15 +184,15 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
                     height: 38.0,
                     alignment: Alignment.center,
                     child: Text(
-                      config.provider.getSureText(
-                          options, selectedList.length),
+                      config.provider.getSureText(options, selectedList.length),
                       style: TextStyle(fontSize: 16),
                     ),
                   ),
                 ),
               ),
-              SizedBox(width: 15,),
-
+              SizedBox(
+                width: 15,
+              ),
             ],
           ),
         ),

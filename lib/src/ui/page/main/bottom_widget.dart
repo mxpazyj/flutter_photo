@@ -92,8 +92,7 @@ class __BottomWidgetState extends State<_BottomWidget> {
                 color: options.splashColor,
                 child: Container(
                   height: 38.0,
-
-
+                  constraints: BoxConstraints(minWidth: 100),
                   alignment: Alignment.center,
                   child: Text(
                     i18nProvider.getSureText(
@@ -102,7 +101,9 @@ class __BottomWidgetState extends State<_BottomWidget> {
                   ),
                 ),
               ),
-              SizedBox(width: 15,)
+              SizedBox(
+                width: 15,
+              )
             ],
           ),
         ),

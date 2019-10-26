@@ -3,7 +3,6 @@ import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:photo/src/delegate/badge_delegate.dart';
 import 'package:photo/src/delegate/loading_delegate.dart';
 import 'package:photo/src/engine/lru_cache.dart';
@@ -325,8 +324,8 @@ class _PhotoMainPageState extends State<PhotoMainPage>
     var currentSelected = containsEntity(entity);
     return Positioned(
       right: 0.0,
-      width: 28.0,
-      height: 28.0,
+      width: 32.0,
+      height: 32.0,
       child: GestureDetector(
         onTap: () {
           changeCheck(!currentSelected, entity);
@@ -346,7 +345,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
         (indexOfSelected(entity) + 1).toString(),
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: 13.0,
+          fontSize: 14.0,
           color: options.textColor,
         ),
       );
