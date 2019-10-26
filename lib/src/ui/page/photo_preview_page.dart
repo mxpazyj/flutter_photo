@@ -182,6 +182,7 @@ class _PhotoPreviewPageState extends State<PhotoPreviewPage> {
                   color: options.splashColor,
                   child: Container(
                     height: 38.0,
+                    constraints: BoxConstraints(minWidth: 100),
                     alignment: Alignment.center,
                     child: Text(
                       config.provider.getSureText(options, selectedList.length),
