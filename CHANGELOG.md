@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.4.8
+
+- Rollback photo_manager
+
+Fix:
+
+- pickedAssetList error
+
+## 0.4.7
+
+- Rollback photo_manager.
+- Add `pickedAssetList` for `pickAsset`.
+
+## 0.4.5+1
+
+Fix:
+
+- `photoPathList` of `PhotoPicker.pickAsset`.
+
+## 0.4.5
+
+Rollback `photo_manager` to `0.4.5`.
+
+## 0.4.4
+
+Rollback `photo_manager` to `0.4.4`.
+
+To fix some error.
+
 ## 0.4.3+1
 
 Fix a error for build.
